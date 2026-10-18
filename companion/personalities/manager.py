@@ -6,8 +6,8 @@ from companion.personalities.profiles import PERSONALITY_PROFILES, get_profile
 class PersonalityManager:
     """Handles character state and platform-specific voice selection."""
 
-    def __init__(self, default_id: str = "nova"):
-        self._active_id = default_id if default_id in PERSONALITY_PROFILES else "nova"
+    def __init__(self, default_id: str = "minu"):
+        self._active_id = default_id if default_id in PERSONALITY_PROFILES else "minu"
         self._os_name = platform.system()
 
     @property
