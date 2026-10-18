@@ -241,6 +241,13 @@ def build_report(d: dict) -> str:
     plan = llm.get("replication_plan", [])
     if isinstance(plan, list) and plan:
         for idx, step in enumerate(plan, 1):
+            # step may be a string or a dict {"step"/"title"/"phase": ..., "details": ...}
+            if isinstance(step, dict):
+                title = step.get("step") or step.get("title") or step.get("phase") or step.get("name") or f"Step {idx}"
+                details = step.get("details") or step.get("description") or step.get("action") or ""
+                A(f"{idx}. **{title}**" + (f" — {details}" if details else ""))
+                continue
+            step = str(step)
             if step.strip().startswith(f"{idx}."):
                 A(f"{step}")
             else:

@@ -1,8 +1,8 @@
 """NovaMind Analyzer CLI — Phase 1.
-Usage:  YT_API_KEY=... [GEMINI_API_KEY=...] python -m analyzer.cli "<channel url>" [--max 50]
-Needs:
-- YouTube Data API v3 key: https://console.cloud.google.com/apis/library/youtube.googleapis.com
-- Optional Gemini API key: export GEMINI_API_KEY=... (falls back to smart heuristics if omitted)
+Usage:  [YT_API_KEY=...] [GEMINI_API_KEY=...] python -m analyzer.cli "<channel url>" [--max 30]
+- No YT_API_KEY? No problem: falls back to no-key mode (public page data).
+- Optional Gemini API key: export GEMINI_API_KEY=... (falls back to smart
+  heuristics if omitted). Model via GEMINI_MODEL (default gemini-3.8-flash).
 """
 import argparse
 import os
@@ -11,9 +11,10 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from analyzer.youtube_client import YTClient
+from analyzer.nokey_client import NoKeyClient
 from analyzer.decode import decode
 from analyzer.captions import get_segments, caption_stats
-from analyzer.llm import analyze_channel
+from analyzer.llm import analyze_channel, DEFAULT_MODEL
 from analyzer.reporter import build_report
 from memory.store import save_channel_profile
 
@@ -31,11 +32,12 @@ def main():
     args = ap.parse_args()
 
     key = os.environ.get("YT_API_KEY")
-    if not key:
-        sys.exit("YT_API_KEY env var missing. Get a key from Google Cloud Console "
-                 "(YouTube Data API v3) and export YT_API_KEY=...")
-
-    yt = YTClient(key)
+    if key:
+        yt = YTClient(key)
+        print("Using YouTube Data API (key found).")
+    else:
+        yt = NoKeyClient()
+        print("No YT_API_KEY — using no-key mode (public page data).")
     print("Resolving channel...")
     ch = yt.resolve_channel(args.channel)
     print(f"Channel: {ch['snippet']['title']}")
@@ -75,7 +77,7 @@ def main():
     # Run Gemini LLM analysis pass
     if not args.no_llm:
         print("Running Gemini LLM reverse-engineering pass...")
-        gemini_model = args.gemini_model or os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+        gemini_model = args.gemini_model or os.environ.get("GEMINI_MODEL", DEFAULT_MODEL)
         llm_res = analyze_channel(
             d,
             sample_videos=sample_vids,

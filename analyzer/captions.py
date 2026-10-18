@@ -1,24 +1,62 @@
 """Caption/transcript fetching for analyzed videos.
 
-Uses `youtube-transcript-api` (pip). Returns timestamped segments so the
-decoder can measure pacing, segment count and narration rhythm.
-Falls back gracefully: a video with no captions returns [] instead of
-crashing the whole analysis run.
+Supports youtube-transcript-api v1.x (YouTubeTranscriptApi().fetch) and
+older 0.x (YouTubeTranscriptApi.get_transcript). Returns timestamped
+segments so the decoder can measure pacing, segment count and narration
+rhythm. Falls back gracefully: a video with no captions (or an IP-blocked
+transcript endpoint) returns [] instead of crashing the analysis run.
 """
-from youtube_transcript_api import YouTubeTranscriptApi
-from youtube_transcript_api._errors import TranscriptsDisabled, NoTranscriptFound
+
+try:
+    from youtube_transcript_api import YouTubeTranscriptApi as _YTA
+    _HAS_YTA = True
+except ImportError:
+    _YTA = None
+    _HAS_YTA = False
+
+
+def _fetch_raw(video_id: str, languages):
+    if not _HAS_YTA:
+        return []
+    langs = list(languages)
+    # v1.x: instance method .fetch() -> snippet objects
+    try:
+        api = _YTA()
+        if hasattr(api, "fetch"):
+            return list(api.fetch(video_id, languages=langs))
+    except Exception:
+        pass
+    # 0.x: classmethod .get_transcript() -> dicts
+    try:
+        if hasattr(_YTA, "get_transcript"):
+            return _YTA.get_transcript(video_id, languages=langs)
+    except Exception:
+        pass
+    return []
+
+
+def _norm(snippet):
+    # snippet may be a dict (0.x) or an object with .text/.start/.duration (1.x)
+    if isinstance(snippet, dict):
+        text = snippet.get("text", "")
+        start = snippet.get("start", 0)
+        dur = snippet.get("duration", 0)
+    else:
+        text = getattr(snippet, "text", "")
+        start = getattr(snippet, "start", 0)
+        dur = getattr(snippet, "duration", 0)
+    text = text.strip() if isinstance(text, str) else ""
+    return {"start": float(start or 0), "dur": float(dur or 0), "text": text}
 
 
 def get_segments(video_id: str, languages=("en",)) -> list:
     """Return [{start, dur, text}] for a video, or [] if unavailable."""
     try:
-        raw = YouTubeTranscriptApi.get_transcript(video_id, languages=list(languages))
-    except (TranscriptsDisabled, NoTranscriptFound):
-        return []
+        raw = _fetch_raw(video_id, languages)
     except Exception:
         return []
-    return [{"start": float(s["start"]), "dur": float(s.get("duration", 0)),
-             "text": s["text"].strip()} for s in raw if s["text"].strip()]
+    segs = [_norm(s) for s in (raw or [])]
+    return [s for s in segs if s["text"]]
 
 
 def get_text(video_id: str, languages=("en",)) -> str:

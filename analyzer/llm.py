@@ -57,7 +57,7 @@ def _call_gemini_api(prompt: str, api_key: str, model: str = DEFAULT_MODEL) -> s
     headers = {"Content-Type": "application/json"}
     
     try:
-        resp = requests.post(url, json=payload, headers=headers, timeout=60)
+        resp = requests.post(url, json=payload, headers=headers, timeout=180)
     except requests.RequestException as e:
         raise RuntimeError(f"Gemini API network request failed: {e}") from e
 
@@ -65,7 +65,7 @@ def _call_gemini_api(prompt: str, api_key: str, model: str = DEFAULT_MODEL) -> s
         # If responseMimeType is not supported on certain legacy models, retry without it
         if "responseMimeType" in resp.text:
             del payload["generationConfig"]["responseMimeType"]
-            resp = requests.post(url, json=payload, headers=headers, timeout=60)
+            resp = requests.post(url, json=payload, headers=headers, timeout=180)
         
         if resp.status_code != 200:
             raise RuntimeError(f"Gemini API returned HTTP {resp.status_code}: {resp.text}")
