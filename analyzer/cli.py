@@ -15,6 +15,7 @@ from analyzer.decode import decode
 from analyzer.captions import get_segments, caption_stats
 from analyzer.llm import analyze_channel
 from analyzer.reporter import build_report
+from memory.store import save_channel_profile
 
 
 def main():
@@ -22,6 +23,7 @@ def main():
     ap.add_argument("channel", help="Channel URL, @handle, or channel ID")
     ap.add_argument("--max", type=int, default=50, help="Videos to analyze (default 50)")
     ap.add_argument("--out", default=None, help="Report path (default reports/<title>.md)")
+    ap.add_argument("--memory-dir", default="memory", help="Directory for persistent channel profiles (default: memory/)")
     ap.add_argument("--gemini-key", default=None, help="Gemini API Key (or set GEMINI_API_KEY env var)")
     ap.add_argument("--gemini-model", default=None, help="Gemini Model (default gemini-1.5-flash)")
     ap.add_argument("--languages", default="en,hi,ur", help="Comma-separated caption languages (default: en,hi,ur)")
@@ -91,6 +93,10 @@ def main():
     with open(out, "w", encoding="utf-8") as f:
         f.write(report)
     print(f"Report written: {out}")
+
+    # Save to persistent NovaMind memory
+    mem_path = save_channel_profile(d, memory_dir=args.memory_dir)
+    print(f"Memory profile saved: {mem_path}")
 
 
 if __name__ == "__main__":

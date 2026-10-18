@@ -34,8 +34,11 @@ def decode(channel: dict, videos: list) -> dict:
     prev_dt = None
     desc_tags, desc_hashtags = Counter(), Counter()
     upload_hours = Counter()
+    upload_days = Counter()
     has_timestamps = 0
     has_links = 0
+    titles_with_question = 0
+    titles_with_brackets = 0
 
     for v in videos:
         s, vs, cd = v["snippet"], v.get("statistics", {}), v.get("contentDetails", {})
@@ -44,12 +47,18 @@ def decode(channel: dict, videos: list) -> dict:
         durs.append(_dur_to_sec(cd.get("duration")))
         dt = _to_dt(s["publishedAt"])
         upload_hours[dt.hour] += 1
+        upload_days[dt.strftime("%A")] += 1
         if prev_dt:
             gaps.append((prev_dt - dt).total_seconds() / 86400)
         prev_dt = dt
 
         title = s["title"]
         title_lens.append(len(title))
+        if "?" in title:
+            titles_with_question += 1
+        if any(c in title for c in ("[", "]", "(", ")")):
+            titles_with_brackets += 1
+
         words = [w.strip(".,!?…\"'()").lower() for w in title.split()]
         title_words.update(w for w in words if w and w not in STOP and len(w) > 2)
         first3 = " ".join(words[:3])
@@ -67,8 +76,9 @@ def decode(channel: dict, videos: list) -> dict:
 
     views_sorted = sorted(views)
     avg_gap = sum(gaps) / len(gaps) if gaps else 0
+    avg_views = sum(views) / max(n, 1)
     breakout = [v for v in videos
-                if int(v.get("statistics", {}).get("viewCount", 0)) > (sum(views) / max(n, 1)) * 3]
+                if int(v.get("statistics", {}).get("viewCount", 0)) > avg_views * 3]
 
     return {
         "channel_title": sn["title"],
@@ -76,16 +86,20 @@ def decode(channel: dict, videos: list) -> dict:
         "subs": subs,
         "total_views": total_views,
         "videos_analyzed": n,
-        "avg_views": sum(views) / max(n, 1),
+        "avg_views": avg_views,
         "median_views": views_sorted[n // 2] if n else 0,
-        "view_sub_ratio": (sum(views) / max(n, 1)) / max(subs, 1),
+        "view_sub_ratio": avg_views / max(subs, 1),
         "avg_likes": sum(likes) / max(n, 1),
+        "like_view_ratio": (sum(likes) / max(sum(views), 1)) * 100,
         "avg_duration_sec": sum(durs) / max(n, 1),
         "avg_gap_days": avg_gap,
+        "weekly_cadence": round(7.0 / avg_gap, 2) if avg_gap > 0 else 0,
         "top_title_words": title_words.most_common(25),
         "top_hooks": hooks.most_common(15),
         "avg_title_len": sum(title_lens) / max(len(title_lens), 1),
         "titles_with_ellipsis": sum(1 for v in videos if "…" in v["snippet"]["title"] or "..." in v["snippet"]["title"]),
+        "titles_with_question": titles_with_question,
+        "titles_with_brackets": titles_with_brackets,
         "top_tags": desc_tags.most_common(20),
         "top_hashtags": desc_hashtags.most_common(15),
         "desc_stats": {
@@ -93,7 +107,16 @@ def decode(channel: dict, videos: list) -> dict:
             "has_links_count": has_links,
         },
         "upload_hours_utc": sorted(upload_hours.items()),
+        "upload_days": sorted(upload_days.items(), key=lambda x: x[1], reverse=True),
         "breakout_count": len(breakout),
         "breakout_titles": [v["snippet"]["title"] for v in breakout[:10]],
+        "breakout_details": [
+            {
+                "title": v["snippet"]["title"],
+                "views": int(v.get("statistics", {}).get("viewCount", 0)),
+                "multiplier": round(int(v.get("statistics", {}).get("viewCount", 0)) / max(avg_views, 1), 1)
+            }
+            for v in breakout[:8]
+        ],
     }
 
