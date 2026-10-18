@@ -68,7 +68,10 @@ LLM analysis pass. No scraping hacks — API-only, stable.
 ## Phase 2 — COMPANION (scaffolded)
 
 Stonic-class desktop shell: voice I/O (STT/TTS), screen+app control agent,
-characters/personalities, memory UI, themes. Windows-first.
+characters/personalities, memory UI, themes. Cross-platform: macOS + Windows
+from day one (user runs a Mac; reference product is Windows-only, NovaMind
+will not be). Python core is portable; platform-specific bits (screen
+control, global hotkeys, installers) get per-OS adapters.
 Built on the same core mind as Analyzer/Factory — one memory, one voice.
 
 ## Phase 3 — FACTORY (scaffolded)
@@ -84,7 +87,7 @@ unattended without a watchdog — agents stall, loop, and burn budget.
 - Literal consciousness / "real human mind" — not possible, not promised.
 - Fully unattended publishing with zero human review — unsafe, against
   YouTube policy risk posture.
-- macOS — Windows first, same as the reference product.
+- Windows-only — must run on macOS AND Windows.
 
 ## Cost model (directional, verify per provider)
 
