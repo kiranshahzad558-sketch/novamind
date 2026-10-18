@@ -55,6 +55,16 @@ class TTSEngine:
     def _speak_sync(self, clean_text: str, voice: Optional[str], rate: int) -> bool:
         with self._lock:
             try:
+                # Prefer Kokoro neural voice (natural) when set up; else system TTS
+                try:
+                    from companion.voice import kokoro_tts
+                    if kokoro_tts.is_available():
+                        speed = max(0.5, min(1.6, rate / 175.0))
+                        if kokoro_tts.speak(clean_text, voice=voice,
+                                            speed=speed, blocking=True):
+                            return True
+                except Exception:
+                    pass
                 if self.system == "Darwin":
                     return self._speak_macos(clean_text, voice=voice, rate=rate)
                 elif self.system == "Windows":
