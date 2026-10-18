@@ -11,6 +11,10 @@ import re
 from typing import Any, Dict, List, Optional, Tuple
 
 from analyzer.youtube_client import YTClient
+try:
+    from analyzer.nokey_client import NoKeyClient
+except Exception:
+    NoKeyClient = None
 from analyzer.decode import decode
 from analyzer.reporter import build_report
 from memory.store import (
@@ -35,19 +39,33 @@ class ActionDispatcher:
         self.reports_dir = reports_dir
 
     def handle_decode_channel(self, channel_target: str, max_videos: int = 50) -> Dict[str, Any]:
-        """Execute Phase 1 channel deep-decode and save report + memory profile."""
+        """Execute Phase 1 channel deep-decode and save report + memory profile.
+
+        Falls back to NoKeyClient (public HTML scraping, up to 30 videos)
+        when YT_API_KEY is not set — no key required for basic analysis.
+        """
         key = os.environ.get("YT_API_KEY")
+        no_key_mode = False
+
         if not key:
-            return {
-                "success": False,
-                "message": (
-                    "YouTube API key missing. Please set YT_API_KEY environment variable "
-                    "to decode YouTube channels."
-                )
-            }
+            if NoKeyClient is None:
+                return {
+                    "success": False,
+                    "message": (
+                        "YouTube API key missing (YT_API_KEY) and NoKeyClient could not be loaded. "
+                        "Please set YT_API_KEY for full decode."
+                    ),
+                }
+            no_key_mode = True
+            max_videos = min(max_videos, 30)  # Public scraping limit
 
         try:
-            yt = YTClient(key)
+            if no_key_mode:
+                yt = NoKeyClient()
+                notice = " [no-key mode: up to 30 videos via public page]"
+            else:
+                yt = YTClient(key)
+                notice = ""
             ch = yt.resolve_channel(channel_target)
             ch_title = ch["snippet"]["title"]
             vids = yt.list_videos(ch, max_results=max_videos)
@@ -65,7 +83,7 @@ class ActionDispatcher:
             mem_path = save_channel_profile(d, memory_dir=self.memory_dir)
 
             summary = (
-                f"Channel '{ch_title}' successfully decoded! "
+                f"Channel '{ch_title}' successfully decoded{notice}! "
                 f"Analyzed {len(vids)} videos. "
                 f"Subscribers: {d.get('subs', 0):,}, Avg views: {int(d.get('avg_views', 0)):,}. "
                 f"Found {d.get('breakout_count', 0)} breakout videos. "

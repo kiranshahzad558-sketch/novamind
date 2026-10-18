@@ -1,9 +1,28 @@
-# NovaMind — Knowledge Base
+# NovaMind Knowledge Base
 
-Domain knowledge repository used by NovaMind Core, the Analyzer, and the Companion.
+Jarvis ki "expert memory" — yahan saved har source ko LLM parhne ke baad
+jawab deta hai (retrieval-style: model ko context mein diya jata hai,
+dobara training nahi hoti — lekin user ke liye asar wahi hai: expert jawab).
 
-## Contents
-- **`tools_catalog.json`**: AI tool benchmarks, pricing, and open-source alternatives (ElevenLabs vs Kokoro, Midjourney vs FLUX, etc.).
-- **`formulas.json`**: High-retention YouTube formulas (optimal WPM pacing, curiosity hooks, open loops, title templates).
-- **`rules.json`**: Critical operational guardrails (fact-checking lock, thumbnail emotional instincts, watchdog loops).
-- **`loader.py`**: Query helper API for programmatic access from Companion and Factory.
+## Structure
+
+```
+knowledge/
+  loader.py            # sab .md/.txt load karke LLM context banata hai
+  sources/
+    higgsfield-academy/  # Higgsfield AI Academy — AI video creation course
+    wildlife-playbook/   # user's documentary formula (future)
+```
+
+## Source add karne ka tareeqa
+
+1. `knowledge/sources/<source-name>/` folder banao.
+2. Material `.md` files mein daalo (PDFs ko pehle text mein convert karo).
+3. `SOURCES.md` mein likho: kya hai, kahan se aaya, kab update hua.
+4. `loader.py` khud sab utha lega — kuch register karne ki zaroorat nahi.
+
+## Higgsfield Academy
+
+Status: course account-wall ke peeche hai. User free account bana kar
+lesson PDFs download kare, assistant unhe yahan `.md` mein convert karke
+save karega. 7 lessons + homework + certificate track.

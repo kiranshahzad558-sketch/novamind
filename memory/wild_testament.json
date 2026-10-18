@@ -1,0 +1,192 @@
+{
+  "schema_version": "1.0",
+  "channel_id": "UCbYplycuOX6G9THQc_vje0Q",
+  "channel_title": "Wild Testament",
+  "analyzed_at": "2026-10-18T03:08:24.607013+00:00",
+  "channel_stats": {
+    "subscribers": 30000,
+    "total_views": 0,
+    "videos_analyzed": 15,
+    "avg_views": 708899.9,
+    "median_views": 374000.0,
+    "view_sub_ratio": 23.63,
+    "avg_likes": 0.0,
+    "like_view_ratio": 0.0,
+    "avg_duration_sec": 1841.4,
+    "breakout_count": 1,
+    "breakout_titles": [
+      "An Orangutan Mother Gives Birth Alone… She Must Raise Her Baby for 8 Years | 4K Wildlife Documentary"
+    ],
+    "breakout_details": [
+      {
+        "title": "An Orangutan Mother Gives Birth Alone… She Must Raise Her Baby for 8 Years | 4K Wildlife Documentary",
+        "views": 4099999,
+        "multiplier": 5.8
+      }
+    ]
+  },
+  "upload_pattern": {
+    "avg_gap_days": 4.21,
+    "weekly_cadence": 1.66,
+    "peak_hours_utc": [
+      3
+    ],
+    "upload_days_distribution": {
+      "Friday": 5,
+      "Wednesday": 5,
+      "Sunday": 3,
+      "Saturday": 1,
+      "Monday": 1
+    }
+  },
+  "title_analysis": {
+    "avg_title_len": 94.3,
+    "titles_with_ellipsis": 12,
+    "titles_with_question": 0,
+    "titles_with_brackets": 0,
+    "top_keywords": [
+      "wildlife",
+      "documentary",
+      "mother",
+      "birth",
+      "gives",
+      "must",
+      "after",
+      "months",
+      "newborn",
+      "calf",
+      "female",
+      "years",
+      "baby",
+      "survive",
+      "alone",
+      "cubs",
+      "okapi",
+      "stay",
+      "hidden",
+      "baboon"
+    ],
+    "top_hooks": [
+      "a mother okapi",
+      "this baboon guards",
+      "mother colobus gives",
+      "a mother panda",
+      "a mother polar",
+      "a musk ox",
+      "a mother moose",
+      "a mother rhino",
+      "an orangutan mother",
+      "a matriarch elephant"
+    ]
+  },
+  "caption_pacing_analysis": {
+    "has_captions": false,
+    "avg_wpm": 150.0,
+    "hook_strategy": "The 'Vulnerable Motherhood Crisis' formula: Frontloads life-or-death biological peril within the first 5 seconds. Opens in media res with an isolated female animal in labor, instantly establishing severe physical vulnerability, an extreme countdown, and a compounding threat (e.g., predator proximity, newborn physical defect, or multi-year solitary devotion).",
+    "pacing_and_wpm": "Measured documentary cadence: 120-135 WPM. Visual shot lengths average 3.2 to 4.5 seconds to build documentary authenticity and sensory immersion. Cut frequency accelerates during birth tension (1.8-2.5 sec cuts) and lengthens into sweeping panoramic landscapes during survival exposition.",
+    "open_loops": [
+      "Immediate physical hurdle: Will the newborn survive the initial trauma (e.g., standing up, surviving a 5-foot drop)?",
+      "Predatory / Social stakes: Will the troop reject or kidnap the baby (e.g., 'every female wants it')?",
+      "Endurance survival timer: How will the mother survive prolonged starvation or extreme gestation isolation (e.g., 4 months without food in winter den)?"
+    ],
+    "cta_placement": "Zero CTAs in the first 8 minutes to maintain cinematic suspension of disbelief. An integrated, non-intrusive soft subscribe prompt ('Honor the wild mothers of our planet by subscribing to Wild Testament') placed at the 65% emotional resolution mark, with an end-screen recommendation driving traffic to the next maternal survival chronicle."
+  },
+  "tool_inference": [
+    {
+      "category": "Voice / Narration",
+      "detected_tool": "ElevenLabs AI Voice (David Attenborough clone / Deep British Documentary Narrator)",
+      "confidence": "High",
+      "evidence": "BBC Natural History documentary style cadence with deliberate gravitas, measured pauses before high-stakes emotional pivots, and flawless 4K nature documentary diction common in faceless viral wildlife automation channels."
+    },
+    {
+      "category": "Imagery & Visuals",
+      "detected_tool": "Hybrid: Midjourney v6.1 / Flux.1 Schnell + Runway Gen-3 / Luma Dream Machine / Seedance 2.0 with B-Roll Curation",
+      "confidence": "High",
+      "evidence": "Titles highlight '4K Wildlife Documentary' with hyper-specific micro-moments ('calf falls 5 feet', 'pure white baby', 'cannot stand') requiring generative AI video or video-to-video VFX plates to capture rare or biologically extreme birth sequences that are nearly impossible to license cost-effectively as raw stock."
+    },
+    {
+      "category": "Editing & Motion",
+      "detected_tool": "Adobe Premiere Pro / DaVinci Resolve Studio with Topaz Video AI 4K Upscaling",
+      "confidence": "Medium",
+      "evidence": "Documentary-grade color grading, simulated anamorphic lens flares, slow cinematic zooms (Ken Burns effect), high dynamic range upscaling, and orchestral cinematic tension scoring timed to emotional narrative beats."
+    },
+    {
+      "category": "Scriptwriting & Research",
+      "detected_tool": "Anthropic Claude 3.5 Sonnet + Custom Storyboarding Skill / Deep Research MCP",
+      "confidence": "High",
+      "evidence": "Sophisticated narrative structure combining emotional anthropomorphic vulnerability ('mother raises baby alone for 8 years', 'spends 4 months without food') with factual zoological timelines (gestation periods, maternal care duration)."
+    }
+  ],
+  "alternative_tools": [
+    {
+      "original_tool": "ElevenLabs Paid Tier ($22-$99/mo)",
+      "cheaper_alternative": "Kokoro-82M / Edge-TTS / Chatterbox TTS (Open Source)",
+      "reason": "Kokoro-82M provides near-commercial-grade natural British documentary voice synthesis with zero subscription costs when run locally via Hugging Face or Docker.",
+      "cost_savings": "$22 - $99/month -> $0/month (Free/Self-hosted)"
+    },
+    {
+      "original_tool": "Midjourney Pro + Runway Gen-3 Alpha ($120/mo)",
+      "cheaper_alternative": "Flux.1 Schnell (Local) + Seedance 2.0 / CogVideoX-5B / Wan2.1",
+      "reason": "Flux.1 Schnell provides photorealistic animal anatomy, fur texture, and natural lighting; Wan2.1 and CogVideoX generate high-fidelity physical motion for wildlife sequences without SaaS credit metering.",
+      "cost_savings": "$120/month -> $0-$15/month (RunPod cloud GPU compute)"
+    },
+    {
+      "original_tool": "Topaz Video AI 4K License ($299 one-time)",
+      "cheaper_alternative": "Real-ESRGAN / Compact Anime & Real Video Upscaler (Open Source)",
+      "reason": "Free open-source video super-resolution models enhance 1080p generative clips to crisp 4K output without per-seat licensing fees.",
+      "cost_savings": "$299 one-time -> $0/month"
+    },
+    {
+      "original_tool": "Artlist / Epidemic Sound Commercial Music Subscription ($25/mo)",
+      "cheaper_alternative": "YouTube Audio Library + Audiocraft / MusicGen Open Source",
+      "reason": "Royalty-free cinematic orchestra tracks in YouTube Audio Library paired with generated atmospheric ambient drone sounds produce zero copyright friction.",
+      "cost_savings": "$25/month -> $0/month"
+    }
+  ],
+  "description_formula": {
+    "top_tags": [],
+    "top_hashtags": [],
+    "has_timestamps_count": 0,
+    "has_links_count": 0
+  },
+  "replication_plan": [
+    {
+      "phase": "Step 1: Outlier Research & Topic Mining",
+      "actions": "Use deep research MCP tooling to filter zoological gestation outliers and extreme maternal sacrifices (e.g., Giant Pacific Octopus, Emperor Penguin, Okapi, Snow Leopard). Target emotional tension points combining motherhood, biological uniqueness, and high-stakes survival barriers."
+    },
+    {
+      "phase": "Step 2: Scripting & Hook Blueprint",
+      "actions": "Deploy Claude with a documentary storytelling prompt framework. Structure the script into three distinct dramatic acts: 1. The Solitary Labor & Initial Shock, 2. The Critical Survival Crucible (first minutes to days), and 3. The Long-Term Maternal Investment. Apply a strict 125 WPM delivery with planned dramatic silences."
+    },
+    {
+      "phase": "Step 3: Voice Generation & Audio Mastering",
+      "actions": "Synthesize narration using an authoritative, compassionate British nature documentary voice model. Post-process in Audacity or DaVinci Fairlight with mild compression, subtle low-end warmth (80Hz shelf), gentle room de-reverberation, and ducked cinematic orchestral underscore with authentic diegetic Foley (wind, animal grunts, footsteps)."
+    },
+    {
+      "phase": "Step 4: Visual Asset Generation & Consistency Locking",
+      "actions": "Implement the Higgsfield asset-locking methodology: build unified character and environment sheets for the animal species and habitat. Generate master reference plates in Flux.1/Midjourney, then execute video generations using image-to-video pipelines (Seedance 2.0 / Gen-3) ensuring anatomical consistency, realistic fur textures, and authentic wildlife camera framing (telephoto shallow depth of field)."
+    },
+    {
+      "phase": "Step 5: Assembly & Motion Integration",
+      "actions": "Timeline assembly in DaVinci Resolve. Match visual cuts to audio narrative beats. Apply smooth camera dolly/pan keyframing, motion-matched lens dust particles, and color grade into naturalistic BBC Earth documentary palettes (warm golden hour sunlight, deep shadow contrast, crisp 4K sharpening)."
+    },
+    {
+      "phase": "Step 6: Packaging & Thumbnail Architecture",
+      "actions": "Engineer high-contrast 3-element thumbnails: 1. Extreme emotional close-up of mother animal's expressive eye/face, 2. Vulnerable newborn in dramatic lighting, 3. Harsh environment. Construct titles following the validated formula: 'A Mother [Species] Gives Birth [Extreme Condition]... [Unforeseen Complication] | 4K Wildlife Documentary'."
+    }
+  ],
+  "strategy_100x": {
+    "speed_multipliers": [
+      "Modular prompt templates categorizing animal species, habitat biome, and birth crisis mechanics.",
+      "Batch generation of 4K environmental B-roll (canopy winds, snowy peaks, riverbeds) stored in a reusable master library.",
+      "MCP-connected pipeline chaining script extraction, TTS generation, and shot-list prompts in a single chat execution.",
+      "Parallel cloud GPU rendering on RunPod/Modal for image-to-video generation tasks."
+    ],
+    "quality_guardrails": [
+      "Strict zoological factual validation (gestation months, offspring count, natural behaviors) to avoid viewer backlash in comments.",
+      "Zero uncanny AI artifacts: Manual inspection of animal anatomy (eyes, paws, claws, number of limbs) on every generated clip.",
+      "Thumbnail emotional authenticity check: Avoid cartoonish or overly synthetic AI looks; ensure hyper-realistic documentary aesthetic.",
+      "Audio-visual sync QC: Ensuring narrator emotional inflection perfectly correlates with the visual severity of the scene."
+    ]
+  }
+}

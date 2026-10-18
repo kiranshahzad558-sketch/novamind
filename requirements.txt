@@ -2,3 +2,5 @@ requests>=2.31
 youtube-transcript-api>=0.6
 sounddevice>=0.4.6
 SpeechRecognition>=3.10.0
+yt-dlp>=2024.1.0
+numpy>=1.24.0
