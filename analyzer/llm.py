@@ -10,11 +10,23 @@ Generates:
 import json
 import os
 import re
+import sys
 import warnings
 import requests
 
 # Suppress urllib3 LibreSSL warning on macOS
 warnings.filterwarnings("ignore", message=".*urllib3 v2 only supports OpenSSL.*")
+
+# NovaMind knowledge base (expert sources like Higgsfield Academy).
+# Loaded as LLM context so Jarvis answers as a trained expert.
+def _get_knowledge_context(max_chars: int = 40000) -> str:
+    try:
+        kb_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "knowledge")
+        sys.path.insert(0, kb_dir)
+        import loader as kb_loader
+        return kb_loader.get_context(max_chars=max_chars)
+    except Exception:
+        return ""
 
 DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
 GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
@@ -117,6 +129,12 @@ Channel Summary:
 
 Sample Videos with Captions/Transcripts:
 {json.dumps(vids_meta, indent=2)}
+
+EXPERT KNOWLEDGE BASE (Higgsfield AI Academy + saved expert sources):
+You have been trained on the following expert course material. Use its
+frameworks, prompt patterns, and workflows when generating the replication
+plan and 100x strategy below — cite specific techniques where relevant.
+{_get_knowledge_context()}
 
 TASK:
 Perform a deep decode and return STRICT JSON with these EXACT 5 top-level keys:
