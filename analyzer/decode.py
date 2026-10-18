@@ -34,6 +34,8 @@ def decode(channel: dict, videos: list) -> dict:
     prev_dt = None
     desc_tags, desc_hashtags = Counter(), Counter()
     upload_hours = Counter()
+    has_timestamps = 0
+    has_links = 0
 
     for v in videos:
         s, vs, cd = v["snippet"], v.get("statistics", {}), v.get("contentDetails", {})
@@ -55,6 +57,11 @@ def decode(channel: dict, videos: list) -> dict:
             hooks[first3] += 1
 
         desc = s.get("description", "")
+        if re.search(r"\b\d{1,2}:\d{2}\b", desc):
+            has_timestamps += 1
+        if "http://" in desc or "https://" in desc:
+            has_links += 1
+
         desc_tags.update(t.strip().lower() for t in (v.get("snippet", {}).get("tags") or []))
         desc_hashtags.update(h.lower() for h in re.findall(r"#(\w+)", desc))
 
@@ -81,7 +88,12 @@ def decode(channel: dict, videos: list) -> dict:
         "titles_with_ellipsis": sum(1 for v in videos if "…" in v["snippet"]["title"] or "..." in v["snippet"]["title"]),
         "top_tags": desc_tags.most_common(20),
         "top_hashtags": desc_hashtags.most_common(15),
+        "desc_stats": {
+            "has_timestamps_count": has_timestamps,
+            "has_links_count": has_links,
+        },
         "upload_hours_utc": sorted(upload_hours.items()),
         "breakout_count": len(breakout),
         "breakout_titles": [v["snippet"]["title"] for v in breakout[:10]],
     }
+
