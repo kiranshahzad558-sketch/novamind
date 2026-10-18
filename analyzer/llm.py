@@ -28,7 +28,7 @@ def _get_knowledge_context(max_chars: int = 40000) -> str:
     except Exception:
         return ""
 
-DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-flash-lite-latest")
 GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 
 
