@@ -22,9 +22,9 @@ def main():
     ap = argparse.ArgumentParser(description="NovaMind Desktop Companion (Phase 2)")
     ap.add_argument(
         "--persona",
-        default="nova",
-        choices=["nova", "mindy", "jarvis", "aura"],
-        help="Initial personality character (default: nova)",
+        default="minu",
+        choices=["nova", "mindy", "jarvis", "aura", "minu"],
+        help="Initial personality character (default: minu)",
     )
     ap.add_argument(
         "--no-voice",
