@@ -1,0 +1,24 @@
+{
+  "operational_rules": [
+    {
+      "rule": "Never automate factual research without human lock",
+      "severity": "CRITICAL",
+      "reason": "AI hallucinations in educational or documentary videos immediately destroy channel authority."
+    },
+    {
+      "rule": "Always preserve thumbnail emotional instincts for human eyes",
+      "severity": "HIGH",
+      "reason": "Click-Through-Rate (CTR) is dictated by subtle emotional resonance that heuristic models often misjudge."
+    },
+    {
+      "rule": "Hard budget caps per video project",
+      "severity": "HIGH",
+      "reason": "Unmonitored batch image and voice generation can burn through API quotas in minutes."
+    },
+    {
+      "rule": "Watchdog loops on all background generation tasks",
+      "severity": "CRITICAL",
+      "reason": "Learned from desktop agent changelogs: agents stall and burn tokens in silent loops without timeout watchdogs."
+    }
+  ]
+}

@@ -1,2 +1,4 @@
 requests>=2.31
 youtube-transcript-api>=0.6
+sounddevice>=0.4.6
+SpeechRecognition>=3.10.0

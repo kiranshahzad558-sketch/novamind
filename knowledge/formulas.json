@@ -1,0 +1,48 @@
+{
+  "retention_benchmarks": {
+    "optimal_wpm_range": "145 - 165 Words Per Minute",
+    "hook_window_seconds": "0 to 15 seconds",
+    "b_roll_cut_cadence": "Every 3 to 5 seconds",
+    "open_loop_frequency": "Every 90 to 120 seconds",
+    "sound_effect_accent_rate": "Every transition / topic shift"
+  },
+  "title_formulas": [
+    {
+      "name": "The Curiosity Paradox",
+      "template": "Why {Subject} Never {Expected Outcome}",
+      "example": "Why Modern Planes Never Fly Over Antarctica"
+    },
+    {
+      "name": "The Hidden Mechanism",
+      "template": "How {Actor} Quietly {Monumental Action}",
+      "example": "How TSMC Quietly Won the Global Microchip War"
+    },
+    {
+      "name": "The Secret Architecture",
+      "template": "The Real Reason {Entity} Failed...",
+      "example": "The Real Reason Concorde Stopped Flying..."
+    },
+    {
+      "name": "The Timeline Contrast",
+      "template": "I Rebuilt {Iconic Asset} in 48 Hours",
+      "example": "I Rebuilt a $100M App in 48 Hours"
+    }
+  ],
+  "hook_structures": [
+    {
+      "type": "Immediate Stake Opening",
+      "duration": "0 - 12s",
+      "guideline": "State the highest stakes dilemma before any introductory greetings or branding."
+    },
+    {
+      "type": "Visual Contrast",
+      "duration": "0 - 15s",
+      "guideline": "Show an unexpected side-by-side or impossible graphic that creates a curiosity gap."
+    },
+    {
+      "type": "The Micro-Story",
+      "duration": "0 - 20s",
+      "guideline": "Start in media res: an intense moment right before disaster or revelation occurs."
+    }
+  ]
+}

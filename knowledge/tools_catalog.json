@@ -1,0 +1,110 @@
+{
+  "voice_synthesis": [
+    {
+      "name": "ElevenLabs",
+      "category": "Voice / Audio",
+      "tier": "Commercial / Premium",
+      "pricing": "$5-$22/month",
+      "pros": "Highest emotional range, human breath simulation, hyper-realistic inflections.",
+      "cons": "Token-based pricing scales exponentially with high video volume.",
+      "cheaper_alternative": "Kokoro-82M / Piper TTS",
+      "savings": "95-100% cost reduction"
+    },
+    {
+      "name": "Kokoro-82M",
+      "category": "Voice / Audio",
+      "tier": "Open Source / Local",
+      "pricing": "100% Free (Apache 2.0)",
+      "pros": "Runs locally on CPU/GPU, ultra-fast generation, surprisingly high natural timbre.",
+      "cons": "Fewer emotion presets than commercial cloud services.",
+      "cheaper_alternative": "Self-hosted",
+      "savings": "Zero ongoing cost"
+    },
+    {
+      "name": "OpenAI TTS (tts-1-hd)",
+      "category": "Voice / Audio",
+      "tier": "Commercial API",
+      "pricing": "$0.030 per 1k characters",
+      "pros": "Predictable latency, natural articulation, clean modern sound.",
+      "cons": "Voice selection limited to 6 presets, minimal speed/emotion sliders.",
+      "cheaper_alternative": "Piper / Kokoro",
+      "savings": "80% cost reduction"
+    }
+  ],
+  "visual_generation": [
+    {
+      "name": "Midjourney v6",
+      "category": "Visuals / Thumbnails",
+      "tier": "Commercial",
+      "pricing": "$10-$30/month",
+      "pros": "Cinematic lighting, high-contrast character art, perfect for YouTube thumbnails.",
+      "cons": "Discord-based workflow, lacks native API automation.",
+      "cheaper_alternative": "FLUX.1 Schnell / ComfyUI",
+      "savings": "Free local generation"
+    },
+    {
+      "name": "FLUX.1 (Schnell / Dev)",
+      "category": "Visuals / Concept Art",
+      "tier": "Open Source / Weights",
+      "pricing": "Free local / fractions of a cent via API",
+      "pros": "State-of-the-art text rendering, photographic skin textures, runs on modern GPUs.",
+      "cons": "Dev license non-commercial; Schnell is open Apache 2.0.",
+      "cheaper_alternative": "Self-hosted via ComfyUI",
+      "savings": "Zero per-image fees"
+    },
+    {
+      "name": "Runway Gen-3 Alpha",
+      "category": "Video Animation",
+      "tier": "Commercial",
+      "pricing": "$15-$95/month",
+      "pros": "Unmatched motion continuity and cinematic camera panning.",
+      "cons": "High credit cost per 5-second generation.",
+      "cheaper_alternative": "CogVideoX / AnimateDiff",
+      "savings": "Local compute savings"
+    }
+  ],
+  "script_and_reasoning": [
+    {
+      "name": "Gemini 1.5 Flash",
+      "category": "LLM / Scriptwriting",
+      "tier": "Commercial / High Quota",
+      "pricing": "Free tier + $0.075 per 1M tokens",
+      "pros": "Massive 1M token context window, parses full video transcripts instantly, very fast.",
+      "cons": "Requires prompt tuning to eliminate standard corporate filler.",
+      "cheaper_alternative": "Ollama / DeepSeek-V3",
+      "savings": "90% cheaper than GPT-4o"
+    },
+    {
+      "name": "DeepSeek-R1",
+      "category": "Reasoning & Fact Verification",
+      "tier": "Open Weights / API",
+      "pricing": "$0.14-$0.55 per 1M tokens",
+      "pros": "Exceptional deep chain-of-thought analysis, superior logic breakdown.",
+      "cons": "Higher latency due to thinking tokens.",
+      "cheaper_alternative": "Local Ollama DeepSeek-R1-Distill",
+      "savings": "Zero cost"
+    }
+  ],
+  "assembly_and_editing": [
+    {
+      "name": "Premiere Pro / After Effects",
+      "category": "Assembly",
+      "tier": "Commercial",
+      "pricing": "$22-$55/month",
+      "pros": "Industry-standard plugins, timeline precision, extensive motion graphics.",
+      "cons": "Heavy subscription lock-in, slow rendering on budget hardware.",
+      "cheaper_alternative": "DaVinci Resolve / FFmpeg Python automation",
+      "savings": "DaVinci Free / 100% automated FFmpeg"
+    },
+    {
+      "name": "CapCut Desktop",
+      "category": "Social Video Editing",
+      "tier": "Freemium",
+      "pricing": "Free / $10 pro",
+      "pros": "Instant auto-captions with viral animations, built-in sound effects library.",
+      "cons": "Closed ecosystem, export watermarks on pro templates.",
+      "cheaper_alternative": "Whisper + Auto-Sub CLI",
+      "savings": "100% Free"
+    }
+  ]
+}

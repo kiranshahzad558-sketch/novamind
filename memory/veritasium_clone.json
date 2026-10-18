@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "channel_id": "UC12345VERITAS",
+  "channel_title": "Veritasium Clone",
+  "analyzed_at": "2026-10-18T03:21:08.686951+00:00",
+  "channel_stats": {
+    "subscribers": 14000000,
+    "total_views": 2000000000,
+    "videos_analyzed": 40,
+    "avg_views": 3500000.0,
+    "median_views": 2800000.0,
+    "view_sub_ratio": 0.25,
+    "avg_likes": 0.0,
+    "like_view_ratio": 0.0,
+    "avg_duration_sec": 0.0,
+    "breakout_count": 3,
+    "breakout_titles": [
+      "How Lead Poisoned America"
+    ],
+    "breakout_details": []
+  },
+  "upload_pattern": {
+    "avg_gap_days": 14.2,
+    "weekly_cadence": 0.0,
+    "peak_hours_utc": [],
+    "upload_days_distribution": {}
+  },
+  "title_analysis": {
+    "avg_title_len": 48.0,
+    "titles_with_ellipsis": 0,
+    "titles_with_question": 0,
+    "titles_with_brackets": 0,
+    "top_keywords": [],
+    "top_hooks": []
+  },
+  "caption_pacing_analysis": {
+    "has_captions": true,
+    "avg_wpm": 150.0,
+    "hook_strategy": "Curiosity hook in first 15 seconds.",
+    "pacing_and_wpm": "Delivery pacing at ~150.0 WPM.",
+    "open_loops": [],
+    "cta_placement": "Soft engagement mid-video, subscription outro."
+  },
+  "tool_inference": [],
+  "alternative_tools": [],
+  "description_formula": {
+    "top_tags": [],
+    "top_hashtags": [],
+    "has_timestamps_count": 0,
+    "has_links_count": 0
+  },
+  "replication_plan": [],
+  "strategy_100x": {
+    "speed_multipliers": [],
+    "quality_guardrails": []
+  }
+}
